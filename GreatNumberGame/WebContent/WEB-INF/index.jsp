@@ -10,10 +10,6 @@
 <body>
 	<%
 		String result_box_str = (String) session.getAttribute("result_box_str");
-		Integer guess = (Integer) session.getAttribute("guess");
-
-/* 		String answer = (String) session.getAttribute("answer");
- */	
 	%>
     <div id="wrapper">
 	      <div id="top_header">
@@ -26,7 +22,7 @@
 	      </div>
 	      <div id="form_block">
 	        <form action='/GreatNumberGame/GreatNumberGame' method = "POST">
-	          input integer from 1 to 100:<input type="number" min="1" max="100" name="guess">
+	          input integer from 1 to 100:<input type="number" min="1" max="100" required name="guess">
 	          <button>Submit</button>
 	        </form>
 	      </div>

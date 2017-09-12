@@ -29,17 +29,12 @@ public class GreatNumberGame extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String result_box_str = null;
 		HttpSession session = request.getSession();
 		if(session.getAttribute("result_box_str") == null) {
 			session.setAttribute("result_box_str", "<div id=\"no_div\"></div>");
 			session.setAttribute("answer", (Double) Math.floor(Math.random()*101));
-			System.out.println("Answer is:" + session.getAttribute("answer"));			
+			System.out.println("Answer is: " + session.getAttribute("answer"));			
 		}
-		else {
-			result_box_str = (String) session.getAttribute("result_box_str");			
-		}
-    
         RequestDispatcher view = request.getRequestDispatcher("WEB-INF/index.jsp");
         view.forward(request, response);	
 	}
@@ -56,9 +51,9 @@ public class GreatNumberGame extends HttpServlet {
 			session.setAttribute("answer", null);
 			session.setAttribute("result_box_str", null);
 		}
-		else if (session.getAttribute("answer") != null) {
+		else if (session.getAttribute("answer") != null ) {
 			Integer guess = Integer.parseInt(request.getParameter("guess"));
-			session.setAttribute("guess", guess);
+//			session.setAttribute("guess", guess);
 			Double answer_double = (Double) session.getAttribute("answer");
 			Integer answer = answer_double.intValue();
 	        if (guess == null || guess < 1 || guess > 100) {
@@ -77,7 +72,7 @@ public class GreatNumberGame extends HttpServlet {
 	     	   result_box_str = "<div id=\"wrong_answer_div\"><h1>" + guess + "? Too High!</h1></div>";
 	     	 }
 	     	session.setAttribute("result_box_str", result_box_str);
-	     	System.out.println(result_box_str);
+	     	//System.out.println(result_box_str);
 
 		}
 //		doGet(request, response);
